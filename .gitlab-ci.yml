@@ -44,12 +44,12 @@ skim_ggH:
       - skim_ggH.root
     expire_in: 1 week
     
-build_image:
+build image:
   stage: build
-  variables:
-    TO: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
-  tags:
-    - docker-image-build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
-    - ignore    
-
+    - docker build -t registry.gitlab.com/burakh/docker-training .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push registry.gitlab.com/burakh/docker-training
