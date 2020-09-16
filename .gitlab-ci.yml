@@ -4,9 +4,6 @@ stages:
   - run
   - plot
 
-variables:
-  - CERN_ISER=dmelini
-  - SERVICE_PASS=1Giulia?
 hello world:
   stage: greeting
   script:
